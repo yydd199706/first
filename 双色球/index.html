@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>双色球</title>
+		<link rel="stylesheet" type="text/css" href="css/animate.css" />
+
+	</head>
+
+	<style type="text/css">
+		ul {
+			display: block;
+			overflow: hidden;
+			list-style: none;
+		}
+		
+		ul>li {
+			width: 40px !important;
+			display: inline-block;
+			height: 40px !important;
+			border-radius: 40px;
+			background: red;
+			color: #fff;
+			line-height: 40px;
+			text-align: center;
+			float: left;
+			margin-right: 10px !important;
+			display: none;
+		}
+		
+		.blue {
+			background: blue;
+		}
+		
+		button {
+			display: block;
+			width: 150px;
+			height: 40px;
+			margin-left: 113px;
+			border: 0;
+			outline: none;
+			background: orange;
+			color: #fff;
+			text-align: center;
+			line-height: 40px;
+			cursor: pointer;
+		}
+		.word1{font-size: 16px;text-align: center;line-height: 40px;width: 350px;}
+		.animateds{width: 25%;margin: 100px auto;text-align: center;}
+	</style>
+
+	<body>
+		<div class="animateds">
+				<ul>
+			<li class="wow rollIn" data-wow-delay="3.5s"></li>
+			<li class="wow rollIn" data-wow-delay="3s"></li>
+			<li class="wow rollIn" data-wow-delay="2.5s"></li>
+			<li class="wow rollIn" data-wow-delay="2s"></li>
+			<li class="wow rollIn" data-wow-delay="1.5s"></li>
+			<li class="wow rollIn" data-wow-delay="1s"></li>
+			<li class="blue wow rollIn" data-wow-delay="0.5s"></li>
+		</ul>
+		
+
+		<button type="button" id="cilckMe">点我生成双色球</button>
+		<div class="word1">
+			
+		</div>
+			
+		</div>
+	
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="js/wow.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/l-by-l.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var reddata = [];
+
+			$('#cilckMe').click(function() {
+				wow = new WOW({
+					animateClass: 'animated',
+				});
+				wow.init();
+				$('li').show();
+				reddata.length = 0;
+				var test = setInterval(test, 10);
+				var blue = random(1, 16);
+				$('.blue').text(blue);
+
+				function random(min, max) {
+					return Math.floor(Math.random() * (max - min)) + min;
+				}
+
+				function test() {
+					if(reddata.length == 6) {
+						for(var i = 0; i < reddata.length; i++) {
+							$('ul').children('li').eq(i).text(reddata[i]);
+						}
+						clearInterval(test);
+					} else {
+						var red = random(1, 33);
+						if(reddata.indexOf(red) == -1) {
+							reddata.push(red);
+						}
+					}
+				}
+				var lbyl = setTimeout(lbyl, 5000);
+				function lbyl(){
+					$(".word1").lbyl({
+					content: "祝你早日中奖！！！",
+					speed: 500,
+					type: 'show',
+					finished: function() {
+						console.log('ffff');
+					}
+				});
+				}
+				
+
+			});
+		</script>
+
+	</body>
+
+</html>
